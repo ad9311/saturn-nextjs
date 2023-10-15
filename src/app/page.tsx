@@ -1,7 +1,9 @@
-export default function HomePage() {
+async function HomePage() {
   return (
-    <main>
+    <>
       <h1>Saturn</h1>
-    </main>
+    </>
   )
 }
+
+export default HomePage;
