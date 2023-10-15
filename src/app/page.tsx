@@ -1,8 +1,11 @@
-async function HomePage() {
+import Link from "next/link";
+
+function HomePage() {
   return (
-    <>
-      <h1>Saturn</h1>
-    </>
+    <div>
+      <h1>Home</h1>
+      <Link href="/profile">Profile</Link>
+    </div>
   )
 }
 
