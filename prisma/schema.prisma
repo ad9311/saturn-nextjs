@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  email  String  @unique
+  avatar String
+  Cycle  Cycle[]
+
+  @@index([email])
+  @@map("users")
+}
+
+model Cycle {
+  id           Int       @id @default(autoincrement())
+  balance      Decimal   @default(0.0)
+  expenseLimit Decimal   @default(0.0) @map("expense_limit")
+  month        Int
+  year         Int
+  createdAt    DateTime  @map("created_at")
+  updatedAt    DateTime  @map("updated_at")
+  user         User      @relation(fields: [userId], references: [id])
+  Income       Income[]
+  Expense      Expense[]
+  userId       Int       @map("user_id")
+
+  @@index([month, year])
+  @@map("cycles")
+}
+
+model Income {
+  id          Int      @id @default(autoincrement())
+  amount      Decimal
+  description String
+  createdAt   DateTime @map("created_at")
+  updatedAt   DateTime @map("updated_at")
+  cycle       Cycle    @relation(fields: [cycleId], references: [id])
+  cycleId     Int      @map("cycle_id")
+
+  @@map("incomes")
+}
+
+model Expense {
+  id          Int      @id @default(autoincrement())
+  amount      Decimal
+  description String
+  createdAt   DateTime @map("created_at")
+  updatedAt   DateTime @map("updated_at")
+  cycle       Cycle    @relation(fields: [cycleId], references: [id])
+  cycleId     Int      @map("cycle_id")
+
+  @@map("expenses")
+}
