@@ -14,7 +14,7 @@ model User {
   id        Int      @id @default(autoincrement())
   name      String   @unique @db.VarChar(255)
   email     String   @unique @db.VarChar(255)
-  avatar    String   @db.Text
+  image     String   @db.Text
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
   Cycles    Cycle[]
@@ -25,8 +25,8 @@ model User {
 
 model Cycle {
   id           Int       @id @default(autoincrement())
-  balance      Decimal   @db.Money @default(0.0)
-  expenseLimit Decimal   @db.Money @default(0.0) @map("expense_limit")
+  balance      Decimal   @default(0.0) @db.Money
+  expenseLimit Decimal   @default(0.0) @map("expense_limit") @db.Money
   month        Int
   year         Int
   createdAt    DateTime  @default(now()) @map("created_at")
