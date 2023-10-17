@@ -23,7 +23,14 @@ export const authOptions: AuthOptions = {
             email,
             image,
           };
-          await prisma.user.create({ data: userData });
+          const user = await prisma.user.create({ data: userData });
+          await prisma.cycle.create({
+            data: {
+              userId: user.id,
+              month: new Date().getMonth() + 1,
+              year: new Date().getFullYear(),
+            }
+          });
           return true;
         } else {
           return false;
