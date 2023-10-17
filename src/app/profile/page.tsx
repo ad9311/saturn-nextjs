@@ -1,5 +1,5 @@
-import UserInfo from "@/components/user/UserInfo"
-import Link from "next/link"
+import UserInfo from '@/components/user/UserInfo';
+import Link from 'next/link';
 
 function ProfilePage() {
   return (
@@ -8,7 +8,7 @@ function ProfilePage() {
       <Link href="/">Back</Link>
       <UserInfo />
     </div>
-  )
+  );
 }
 
-export default ProfilePage
+export default ProfilePage;

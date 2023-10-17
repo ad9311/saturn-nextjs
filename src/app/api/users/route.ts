@@ -1,5 +1,5 @@
-import prisma from "@/db/prisma";
-import { NextRequest, NextResponse } from "next/server";
+import prisma from '@/db/prisma';
+import { NextRequest, NextResponse } from 'next/server';
 import { userSchema } from '@/types';
 
 export async function GET() {
@@ -13,10 +13,10 @@ export async function POST(request: NextRequest) {
   const validation = userSchema.safeParse(body);
 
   if (!validation.success) {
-    return NextResponse.json(validation.error.errors, { status: 400 })
+    return NextResponse.json(validation.error.errors, { status: 400 });
   }
 
-  const user = await prisma.user.create({ data: {...body} });
+  const user = await prisma.user.create({ data: { ...body } });
 
   return NextResponse.json({ user });
 }

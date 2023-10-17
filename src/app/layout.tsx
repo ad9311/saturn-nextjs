@@ -1,22 +1,18 @@
-import type { Metadata } from 'next'
-import { getServerSession } from 'next-auth'
+import type { Metadata } from 'next';
+import { getServerSession } from 'next-auth';
 import SessionProvider from '@/app/session/SessionProvider';
-import { Inter } from 'next/font/google'
-import './globals.css'
+import { Inter } from 'next/font/google';
+import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Saturn',
   description: 'Personal app',
-}
+};
 
-async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession();
 
   return (
@@ -28,7 +24,7 @@ async function RootLayout({
         </SessionProvider>
       </body>
     </html>
-  )
+  );
 }
 
 export default RootLayout;

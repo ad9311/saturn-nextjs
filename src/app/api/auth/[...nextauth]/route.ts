@@ -22,15 +22,15 @@ export const authOptions: AuthOptions = {
             name,
             email,
             image,
-          }
+          };
           await createUser(userData);
           return true;
         } else {
           return false;
         }
       }
-    }
-  }
+    },
+  },
 };
 
 export const handler = NextAuth(authOptions);

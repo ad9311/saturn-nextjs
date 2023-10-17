@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { signOut } from 'next-auth/react';
 
@@ -10,10 +10,12 @@ function Navbar() {
   return (
     <div className="mb-10 bg-neutral-200">
       <nav>
-        <button type="button" onClick={handSignOut}>Sign out</button>
+        <button type="button" onClick={handSignOut}>
+          Sign out
+        </button>
       </nav>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
