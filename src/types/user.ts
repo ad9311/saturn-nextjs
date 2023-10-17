@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-export type GitHubUser = {
-  name?: string | null | undefined;
-  email?: string | null | undefined;
-  image?: string | null | undefined;
-} | undefined;
+export interface GitHubUser {
+  name: string;
+  email: string;
+  image: string;
+};
 
 export const userSchema  = z.object({
   name: z.string().min(1),
