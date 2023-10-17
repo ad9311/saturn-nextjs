@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth/next';
 import { AuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
-import { createUser, findUserByEmail } from '@/db/user';
+import prisma from '@/db/prisma';
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -12,7 +12,7 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async signIn(data) {
-      const user = await findUserByEmail(`${data.user.email}`);
+      const user = await prisma.user.findUnique({ where: { email: data.user.email ?? '' }});
       if (user) {
         return true;
       } else {
@@ -23,7 +23,7 @@ export const authOptions: AuthOptions = {
             email,
             image,
           };
-          await createUser(userData);
+          await prisma.user.create({ data: userData });
           return true;
         } else {
           return false;
