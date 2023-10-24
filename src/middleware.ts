@@ -1,3 +1,3 @@
 export { default } from 'next-auth/middleware';
 
-export const config = { matcher: ['/', '/profile', '/api/users'] };
+export const config = { matcher: ['/', '/profile'] };

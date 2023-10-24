@@ -12,7 +12,7 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async signIn(data) {
-      const user = await prisma.user.findUnique({ where: { email: data.user.email ?? '' }});
+      const user = await prisma.user.findUnique({ where: { email: data.user.email ?? '' } });
       if (user) {
         return true;
       } else {
@@ -29,7 +29,7 @@ export const authOptions: AuthOptions = {
               userId: user.id,
               month: new Date().getMonth() + 1,
               year: new Date().getFullYear(),
-            }
+            },
           });
           return true;
         } else {
