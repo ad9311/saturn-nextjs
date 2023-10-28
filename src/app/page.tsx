@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { getCurrentUser, getUserLastCycle } from '@/db';
-import CycleInfo from '@/components/cycle/CycleInfo';
+import CycleInfo from '@/components/cycle';
 
 async function HomePage() {
   const currentUser = await getCurrentUser();

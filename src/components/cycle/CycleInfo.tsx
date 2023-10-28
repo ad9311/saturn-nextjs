@@ -1,13 +1,15 @@
+import { displayMonth } from '@/helpers';
 import { CycleModel } from '@/types';
 
 function CycleInfo({ cycle }: { cycle: CycleModel }) {
   return (
-    <article>
+    <section>
       <h2>
-        {cycle.month}
+        {displayMonth(cycle.month)}&nbsp;
         {cycle.year}
       </h2>
-    </article>
+      <p>Balance: {cycle.balance.toString()}</p>
+    </section>
   );
 }
 

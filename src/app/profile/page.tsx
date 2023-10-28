@@ -1,4 +1,4 @@
-import UserInfo from '@/components/user/UserInfo';
+import UserInfo from '@/components/user';
 import Link from 'next/link';
 
 function ProfilePage() {
