@@ -1,9 +1,12 @@
 import { displayMonth } from '@/helpers';
 import { CycleModel } from '@/types';
-import TransactionTable from '../transaction';
-import TransactionSummary from '../transaction/TransactionSummary';
+import TransactionTable, { TransactionsSummary } from '../transaction';
+import { sumTotalCycleExpenses, sumTotalCycleIncomes } from '@/db';
 
 async function CycleInfo({ cycle }: { cycle: CycleModel }) {
+  const totalIncome = await sumTotalCycleIncomes(cycle.id);
+  const totalExpenses = await sumTotalCycleExpenses(cycle.id);
+
   return (
     <article>
       <h2>
@@ -21,7 +24,11 @@ async function CycleInfo({ cycle }: { cycle: CycleModel }) {
       </section>
       <section>
         <h3>Totals</h3>
-        <TransactionSummary />
+        <TransactionsSummary
+          cycleBalance={cycle.balance}
+          totalIncome={totalIncome}
+          totalExpenses={totalExpenses}
+        />
       </section>
     </article>
   );
