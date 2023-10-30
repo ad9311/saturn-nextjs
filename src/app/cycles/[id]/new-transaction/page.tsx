@@ -1,6 +1,10 @@
+import { TransactionForm } from "@/components/transaction"
+
 function NewTransaction() {
   return (
-    <div>NewTransaction</div>
+    <div>
+      <TransactionForm />
+    </div>
   )
 }
 
