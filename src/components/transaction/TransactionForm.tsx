@@ -12,15 +12,19 @@ function TransactionForm() {
       <label htmlFor="type">
         Type
         <select name="type" id="type">
-          <option value="income" id="income">Income</option>
-          <option value="expense" id="expense">Expense</option>
+          <option value="income" id="income">
+            Income
+          </option>
+          <option value="expense" id="expense">
+            Expense
+          </option>
         </select>
       </label>
       <label htmlFor="submit">
         <input type="submit" name="submit" id="submit" value="Submit" />
       </label>
     </form>
-  )
+  );
 }
 
-export default TransactionForm
+export default TransactionForm;
