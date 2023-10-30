@@ -1,5 +1,4 @@
 import { TransactionTableProps } from '@/types';
-import React from 'react';
 
 function TransactionTable(props: TransactionTableProps) {
   const mappedTransactions = props.transactions.map((transaction) => (

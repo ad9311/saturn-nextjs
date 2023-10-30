@@ -1,7 +1,6 @@
 import CycleInfo from '@/components/cycle';
 import prisma from '@/db';
 import { notFound } from 'next/navigation';
-import React from 'react';
 
 async function getCycleById(id: number) {
   return await prisma.cycle.findUnique({
