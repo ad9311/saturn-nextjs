@@ -11,7 +11,7 @@ async function getCycleById(id: number) {
 }
 
 async function Cycle({ params }: { params: { id: string } }) {
-  const cycle = await getCycleById(Number(params.id));
+  const cycle = await getCycleById(Number.isNaN(Number(params.id))  ? 0 : Number(params.id));
   if (cycle) {
     return <CycleInfo cycle={cycle} />;
   }
