@@ -1,4 +1,4 @@
-import { Transaction } from "@prisma/client";
+import { Transaction } from '@prisma/client';
 
 function TransactionTable({ transactions }: { transactions: Transaction[] }) {
   const mappedTransactions = transactions.map((transaction) => (
