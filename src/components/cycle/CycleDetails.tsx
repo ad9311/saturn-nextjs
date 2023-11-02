@@ -1,11 +1,11 @@
 import { displayMonth } from '@/helpers';
 import { CycleModel } from '@/types';
 import TransactionTable, { TransactionsSummary } from '../transaction';
-import { sumTotalCycleExpenses, sumTotalCycleIncomes } from '@/db';
+import { sumTotalCycleTransactions } from '@/db';
 
 async function CycleDetails({ cycle }: { cycle: CycleModel }) {
-  const totalIncome = await sumTotalCycleIncomes(cycle.id);
-  const totalExpenses = await sumTotalCycleExpenses(cycle.id);
+  const totalIncome = await sumTotalCycleTransactions(cycle.id, 'INCOME');
+  const totalExpenses = await sumTotalCycleTransactions(cycle.id, 'EXPENSE');
 
   return (
     <article>
