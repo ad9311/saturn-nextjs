@@ -1,9 +1,9 @@
 import { User } from '@prisma/client';
 import { z } from 'zod';
-import { CycleModel } from '.';
+import { AccountModel } from './account';
 
 export interface UserModel extends User {
-  Cycles: CycleModel[];
+  Accounts: AccountModel[];
 }
 
 export type GitHubUser = {

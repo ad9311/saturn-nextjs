@@ -1,6 +1,5 @@
-import { Cycle, Expense, Income } from '@prisma/client';
+import { Cycle, Transaction } from '@prisma/client';
 
 export interface CycleModel extends Cycle {
-  Expenses: Expense[];
-  Incomes: Income[];
+  Transactions: Transaction[];
 }
