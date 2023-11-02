@@ -1,3 +1,3 @@
-import CycleInfo from './CycleInfo';
+import CycleDetails from './CycleDetails';
 
-export default CycleInfo;
+export default CycleDetails;

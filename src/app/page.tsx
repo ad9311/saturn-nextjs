@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { getCurrentUser, getUserLastCycle } from '@/db';
-import CycleInfo from '@/components/cycle';
+import CycleDetails from '@/components/cycle';
 
 async function HomePage() {
   const currentUser = await getCurrentUser();
@@ -10,7 +10,7 @@ async function HomePage() {
     <div>
       <h1>Home</h1>
       <Link href="/profile">Profile</Link>
-      {lastCycle && <CycleInfo cycle={lastCycle} />}
+      {lastCycle && <CycleDetails cycle={lastCycle} />}
     </div>
   );
 }

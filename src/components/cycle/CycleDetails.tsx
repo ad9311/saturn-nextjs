@@ -3,7 +3,7 @@ import { CycleModel } from '@/types';
 import TransactionTable, { TransactionsSummary } from '../transaction';
 import { sumTotalCycleExpenses, sumTotalCycleIncomes } from '@/db';
 
-async function CycleInfo({ cycle }: { cycle: CycleModel }) {
+async function CycleDetails({ cycle }: { cycle: CycleModel }) {
   const totalIncome = await sumTotalCycleIncomes(cycle.id);
   const totalExpenses = await sumTotalCycleExpenses(cycle.id);
 
@@ -16,11 +16,11 @@ async function CycleInfo({ cycle }: { cycle: CycleModel }) {
       <p>Balance: {cycle.balance.toString()}</p>
       <section>
         <h3>Income</h3>
-        <TransactionTable transactions={cycle.Incomes} type="income" />
+        <TransactionTable transactions={cycle.Transactions} />
       </section>
       <section>
         <h3>Expenses</h3>
-        <TransactionTable transactions={cycle.Expenses} type="expense" />
+        <TransactionTable transactions={cycle.Transactions} />
       </section>
       <section>
         <h3>Totals</h3>
@@ -34,4 +34,4 @@ async function CycleInfo({ cycle }: { cycle: CycleModel }) {
   );
 }
 
-export default CycleInfo;
+export default CycleDetails;

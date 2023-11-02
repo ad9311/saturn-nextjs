@@ -1,7 +1,7 @@
-import { TransactionTableProps } from '@/types';
+import { Transaction } from "@prisma/client";
 
-function TransactionTable(props: TransactionTableProps) {
-  const mappedTransactions = props.transactions.map((transaction) => (
+function TransactionTable({ transactions }: { transactions: Transaction[] }) {
+  const mappedTransactions = transactions.map((transaction) => (
     <tr key={transaction.id}>
       <td>{transaction.description}</td>
       <td>{transaction.amount.toFixed(2)}</td>
