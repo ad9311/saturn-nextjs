@@ -11,55 +11,63 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique @db.VarChar(255)
-  email     String   @unique @db.VarChar(255)
-  image     String   @db.Text
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-  Cycles    Cycle[]
+  id        Int       @id @default(autoincrement())
+  name      String    @unique @db.VarChar(255)
+  email     String    @unique @db.VarChar(255)
+  image     String    @db.Text
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  Accounts  Account[]
 
   @@index([email])
   @@map("users")
 }
 
+model Account {
+  id       Int     @id @default(autoincrement())
+  bankName String  @map("bank_name")
+  balance  Decimal @default(0.0) @db.Money
+  User     User    @relation(fields: [userId], references: [id])
+  userId   Int     @map("user_id")
+  Cycles   Cycle[]
+
+  @@map("accounts")
+}
+
 model Cycle {
-  id           Int       @id @default(autoincrement())
-  balance      Decimal   @default(0.0) @db.Money
-  expenseLimit Decimal   @default(0.0) @map("expense_limit") @db.Money
+  id           Int           @id @default(autoincrement())
+  balance      Decimal       @default(0.0) @db.Money
+  expenseLimit Decimal       @default(0.0) @map("expense_limit") @db.Money
   month        Int
   year         Int
-  createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime  @updatedAt @map("updated_at")
-  user         User      @relation(fields: [userId], references: [id])
-  Incomes      Income[]
-  Expenses     Expense[]
-  userId       Int       @map("user_id")
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  Account      Account       @relation(fields: [accountId], references: [id])
+  Transactions Transaction[]
+  accountId    Int           @map("account_id")
 
   @@index([month, year])
   @@map("cycles")
 }
 
-model Income {
-  id          Int      @id @default(autoincrement())
-  amount      Decimal  @db.Money
-  description String   @db.Text
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
-  cycle       Cycle    @relation(fields: [cycleId], references: [id])
-  cycleId     Int      @map("cycle_id")
+model Transaction {
+  id                Int               @id @default(autoincrement())
+  amount            Decimal           @db.Money
+  description       String            @db.Text
+  method            TransactionMethod @default(TRANSFER)
+  methodDescription String            @map("method_description") @db.Text
+  createdAt         DateTime          @default(now()) @map("created_at")
+  updatedAt         DateTime          @updatedAt @map("updated_at")
+  cycle             Cycle             @relation(fields: [cycleId], references: [id])
+  cycleId           Int               @map("cycle_id")
 
-  @@map("incomes")
+  @@map("transactions")
 }
 
-model Expense {
-  id          Int      @id @default(autoincrement())
-  amount      Decimal  @db.Money
-  description String   @db.Text
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
-  cycle       Cycle    @relation(fields: [cycleId], references: [id])
-  cycleId     Int      @map("cycle_id")
-
-  @@map("expenses")
+enum TransactionMethod {
+  TRANSFER
+  DEBIT_CARD
+  CREDIT_CARD
+  WITHDRAWAL
+  DEPOSIT
 }
