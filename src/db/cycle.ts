@@ -1,20 +1,15 @@
 import prisma from '.';
 
-export async function getUserLastCycle(userId: number | undefined) {
-  if (userId) {
-    return await prisma.cycle.findFirst({
-      where: {
-        userId,
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-      include: {
-        Expenses: true,
-        Incomes: true,
-      },
-    });
-  }
-
-  return null;
+export async function getUserLastCycle(accountId: number) {
+  return await prisma.cycle.findFirst({
+    where: {
+      accountId,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      Transactions: true,
+    },
+  });
 }
