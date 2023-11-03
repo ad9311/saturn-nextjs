@@ -1,12 +1,14 @@
-import Link from 'next/link';
+import AccountList from '@/components/account';
+import { getAccountsFromCurrentUser } from '@/db';
 
 async function HomePage() {
+  const accounts = await getAccountsFromCurrentUser();
+
   return (
     <div>
-      <h1>Home</h1>
-      <Link href="/profile">Profile</Link>
+      <AccountList accounts={accounts} />
     </div>
-  );
+  )
 }
 
 export default HomePage;
