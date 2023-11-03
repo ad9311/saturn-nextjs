@@ -1,9 +1,10 @@
 'use server';
 
 import prisma, { getCurrentUser } from '@/db';
+import { FormMessage } from '@/types';
 import { accountSchema } from '@/types/account';
 
-export async function createAccountAction(prevState: any, formData: FormData) {
+export async function createAccountAction(_prevState: FormMessage, formData: FormData) {
   try {
     const user = await getCurrentUser();
     if (!user) {

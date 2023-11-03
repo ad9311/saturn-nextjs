@@ -2,8 +2,9 @@
 
 import { useFormState, useFormStatus } from 'react-dom';
 import { createAccountAction } from '.';
+import { FormMessage } from '@/types';
 
-const initialState = {
+const initialState: FormMessage = {
   message: null,
 };
 
@@ -33,7 +34,7 @@ function AccountForm() {
       <label htmlFor="submit">
         <SubmitInput />
       </label>
-      <p>{state.message}</p>
+      <p>{state?.message}</p>
     </form>
   );
 }
