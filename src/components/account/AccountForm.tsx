@@ -29,7 +29,7 @@ function AccountForm() {
     <form id="new_bank_account" action={formAction}>
       <label htmlFor="bank_name">
         Bank name
-        <input type="text" id="bank_name" name="bank_name" required />
+        <input type="text" id="bank_name" name="bank_name" />
       </label>
       <label htmlFor="submit">
         <SubmitInput />

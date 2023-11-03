@@ -7,6 +7,6 @@ export interface AccountModel extends Account {
 }
 
 export const accountSchema = z.object({
-  bankName: z.string().max(20),
+  bankName: z.string().min(1).max(20),
   userId: z.number(),
 });
