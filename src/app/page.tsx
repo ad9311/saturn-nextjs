@@ -8,7 +8,7 @@ async function HomePage() {
     <div>
       <AccountList accounts={accounts} />
     </div>
-  )
+  );
 }
 
 export default HomePage;

@@ -1,7 +1,5 @@
 function AccountForm() {
-  return (
-    <div>AccountForm</div>
-  )
+  return <div>AccountForm</div>;
 }
 
-export default AccountForm
+export default AccountForm;
