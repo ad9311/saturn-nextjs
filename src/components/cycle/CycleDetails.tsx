@@ -1,4 +1,4 @@
-import { displayMonth } from '@/helpers';
+import { displayMonth, formatCurrency } from '@/helpers';
 import { CycleModel } from '@/types';
 import TransactionTable, { TransactionsSummary } from '../transaction';
 import { sumTotalCycleTransactions } from '@/db';
@@ -13,7 +13,7 @@ async function CycleDetails({ cycle }: { cycle: CycleModel }) {
         {displayMonth(cycle.month)}&nbsp;
         {cycle.year}
       </h2>
-      <p>Balance: {cycle.balance.toString()}</p>
+      <p>Balance: {formatCurrency(cycle.balance)}</p>
       <section>
         <h3>Income</h3>
         <TransactionTable transactions={cycle.Transactions} />

@@ -1,3 +1,4 @@
+import { formatCurrency } from '@/helpers';
 import { Decimal } from '@prisma/client/runtime/library';
 
 function TransactionsSummary({
@@ -20,9 +21,9 @@ function TransactionsSummary({
       </thead>
       <tbody>
         <tr>
-          <td>{cycleBalance.toFixed(2)}</td>
-          <td>{totalIncome?.toFixed(2) ?? '0.00'}</td>
-          <td>{totalExpenses?.toFixed(2) ?? '0.00'}</td>
+          <td>{formatCurrency(cycleBalance)}</td>
+          <td>{formatCurrency(totalIncome)}</td>
+          <td>{formatCurrency(totalExpenses)}</td>
         </tr>
       </tbody>
     </table>

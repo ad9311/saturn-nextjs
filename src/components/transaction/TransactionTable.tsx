@@ -1,10 +1,11 @@
+import { formatCurrency } from '@/helpers';
 import { Transaction } from '@prisma/client';
 
 function TransactionTable({ transactions }: { transactions: Transaction[] }) {
   const mappedTransactions = transactions.map((transaction) => (
     <tr key={transaction.id}>
       <td>{transaction.description}</td>
-      <td>{transaction.amount.toFixed(2)}</td>
+      <td>{formatCurrency(transaction.amount)}</td>
       <td>{transaction.createdAt.toDateString()}</td>
     </tr>
   ));
