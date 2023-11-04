@@ -14,3 +14,10 @@ export async function getAccountsFromCurrentUser() {
 
   return [] as AccountModel[];
 }
+
+export async function getAccountFromId(id: number) {
+  return prisma.account.findUnique({
+    where: { id: id },
+    include: { Cycles: { include: { Transactions: true }, orderBy: { createdAt: 'desc' } } },
+  });
+}
