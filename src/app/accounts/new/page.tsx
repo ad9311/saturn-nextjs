@@ -1,7 +1,7 @@
 import { AccountForm } from '@/components/account';
 import React from 'react';
 
-function NewAccount() {
+function NewAccountPage() {
   return (
     <div>
       <span>Add new account</span>
@@ -10,4 +10,4 @@ function NewAccount() {
   );
 }
 
-export default NewAccount;
+export default NewAccountPage;
