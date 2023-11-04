@@ -25,7 +25,7 @@ model User {
 
 model Account {
   id       Int     @id @default(autoincrement())
-  bankName String  @map("bank_name")
+  bankName String  @unique @map("bank_name")
   balance  Decimal @default(0.0) @db.Money
   User     User    @relation(fields: [userId], references: [id])
   userId   Int     @map("user_id")

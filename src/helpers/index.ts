@@ -1,1 +1,1 @@
-export { displayMonth } from './date';
+export { displayMonth, getCurrentMonthYear } from './date';
