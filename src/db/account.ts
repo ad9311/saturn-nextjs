@@ -2,7 +2,11 @@ import { AccountModel } from '@/types';
 import prisma, { getCurrentUser } from '.';
 
 export async function getUserAccounts(userId: number) {
-  return await prisma.account.findMany({ where: { userId }, include: { Cycles: true } });
+  return await prisma.account.findMany({
+    where: { userId },
+    include: { Cycles: true },
+    orderBy: { createdAt: 'desc' },
+  });
 }
 
 export async function getAccountsFromCurrentUser() {

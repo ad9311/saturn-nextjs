@@ -1,4 +1,4 @@
-import prisma, { getAccountFromId } from '@/db';
+import { getAccountFromId } from '@/db';
 import { AccountDetails } from '@/components/account';
 import { notFound } from 'next/navigation';
 

@@ -1,4 +1,4 @@
-import { Decimal } from "@prisma/client/runtime/library";
+import { Decimal } from '@prisma/client/runtime/library';
 
 export function formatCurrency(amount: Decimal | null) {
   const currencyValue = Number(amount);
