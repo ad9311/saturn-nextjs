@@ -49,3 +49,11 @@ export async function subsIncomeAmountToCycleBalance(cycleId: number, transactio
     data: { balance: cycle.balance.toNumber() - income.amount.toNumber() },
   });
 }
+
+export async function getCycleFromId(id: number) {
+  if (!Number.isInteger(id)) {
+    return null;
+  }
+
+  return await prisma.cycle.findUnique({ where: { id }});
+}

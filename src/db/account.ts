@@ -20,6 +20,10 @@ export async function getAccountsFromCurrentUser() {
 }
 
 export async function getAccountFromId(id: number) {
+  if (!Number.isInteger(id)) {
+    return null;
+  }
+
   return prisma.account.findUnique({
     where: { id: id },
     include: { Cycles: { include: { Transactions: true }, orderBy: { createdAt: 'desc' } } },
