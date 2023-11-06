@@ -3,7 +3,7 @@
 import prisma, { getCurrentUser } from '@/db';
 import { getCurrentMonthYear } from '@/helpers';
 import { FormMessage } from '@/types';
-import { accountSchema } from '@/types/account';
+import { accountSchema } from '@/types';
 
 export async function createAccountAction(_prevState: FormMessage, formData: FormData) {
   try {

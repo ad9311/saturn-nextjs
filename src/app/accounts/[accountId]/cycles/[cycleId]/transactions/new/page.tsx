@@ -3,7 +3,7 @@ import { TransactionForm } from '@/components/transaction';
 import { getAccountFromId, getCycleFromId } from '@/db';
 import { notFound } from 'next/navigation';
 
-async function NewTransaction({ params }: { params: { accountId: string; cycleId: string } }) {
+async function NewTransactionPage({ params }: { params: { accountId: string; cycleId: string } }) {
   const accountId = Number(params.accountId);
   const cycleId = Number(params.cycleId);
 
@@ -21,4 +21,4 @@ async function NewTransaction({ params }: { params: { accountId: string; cycleId
   notFound();
 }
 
-export default NewTransaction;
+export default NewTransactionPage;

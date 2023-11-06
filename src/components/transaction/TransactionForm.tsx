@@ -1,6 +1,33 @@
-function TransactionForm() {
+'use client';
+
+import { useFormState, useFormStatus } from "react-dom";
+import { createTransactionAction } from "@/actions/transaction";
+import { FormMessage } from "@/types";
+
+const initialState: FormMessage = {
+  message: null,
+};
+
+function SubmitInput() {
+  const { pending } = useFormStatus();
+
   return (
-    <form method="POST" className="form">
+    <input
+      type="submit"
+      id="submit"
+      name="submit"
+      value="Submit"
+      className={pending ? 'text-red-500 font-bold' : ''}
+    />
+  );
+}
+
+
+function TransactionForm() {
+  const [state, formAction] = useFormState(createTransactionAction, initialState);
+
+  return (
+    <form className="form" action={formAction}>
       <label htmlFor="description">
         Description
         <textarea name="description" id="description" placeholder="Description" />
@@ -21,8 +48,9 @@ function TransactionForm() {
         </select>
       </label>
       <label htmlFor="submit">
-        <input type="submit" name="submit" id="submit" value="Submit" />
+        <SubmitInput />
       </label>
+      <p>{state?.message}</p>
     </form>
   );
 }
