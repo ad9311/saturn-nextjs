@@ -26,7 +26,7 @@ export async function getAccountFromId(id: number) {
   });
 }
 
-export async function AddCycleBalanceToAccountBalance(accountId: number, cycleId: number) {
+export async function addCycleBalanceToAccountBalance(accountId: number, cycleId: number) {
   const account = await prisma.account.findUnique({ where: { id: accountId }});
   const cycle = await prisma.cycle.findUnique({ where: { id: cycleId }});
 
