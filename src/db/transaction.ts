@@ -1,5 +1,5 @@
 import { TransactionType } from '@prisma/client';
-import prisma, { addCycleBalanceToAccountBalance, addIncomeAmountToCycleBalance } from '.';
+import prisma, { addCycleBalanceToAccountBalance, addIncomeAmountToCycleBalance, subsCycleBalanceToAccountBalance, subsIncomeAmountToCycleBalance } from '.';
 import { TransactionFormData } from '@/types';
 
 export async function sumTotalCycleTransactions(cycleId: number, type: TransactionType) {
@@ -26,4 +26,16 @@ export async function createCycleIncome(transactionFormData: TransactionFormData
 }
 
 export async function createCycleExpense(transactionFormData: TransactionFormData) {
+  const { cycleId } = transactionFormData;
+  const cycle = await prisma.cycle.findUnique({
+    where: { id: cycleId },
+    include: { Account: true },
+  });
+  if (cycle) {
+    const income = await prisma.transaction.create({ data: { ...transactionFormData } });
+    await subsIncomeAmountToCycleBalance(cycleId, income.id);
+    await subsCycleBalanceToAccountBalance(cycle.Account.id, cycleId);
+    return income;
+  }
+  throw new Error(`Cycle with id ${cycleId} was not found`);
 }

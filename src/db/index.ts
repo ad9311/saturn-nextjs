@@ -1,7 +1,7 @@
 import prisma from './prisma';
 
 export { getCurrentUser } from './user';
-export { getUserLastCycle, addIncomeAmountToCycleBalance } from './cycle';
+export { getUserLastCycle, addIncomeAmountToCycleBalance, subsIncomeAmountToCycleBalance } from './cycle';
 export { sumTotalCycleTransactions } from './transaction';
-export { getUserAccounts, getAccountsFromCurrentUser, getAccountFromId, addCycleBalanceToAccountBalance } from './account';
+export { getUserAccounts, getAccountsFromCurrentUser, getAccountFromId, addCycleBalanceToAccountBalance, subsCycleBalanceToAccountBalance } from './account';
 export default prisma;
