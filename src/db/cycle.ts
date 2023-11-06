@@ -55,5 +55,5 @@ export async function getCycleFromId(id: number) {
     return null;
   }
 
-  return await prisma.cycle.findUnique({ where: { id }});
+  return await prisma.cycle.findUnique({ where: { id } });
 }

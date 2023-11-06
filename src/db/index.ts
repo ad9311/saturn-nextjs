@@ -5,7 +5,7 @@ export {
   getUserLastCycle,
   addIncomeAmountToCycleBalance,
   subsIncomeAmountToCycleBalance,
-  getCycleFromId
+  getCycleFromId,
 } from './cycle';
 export { sumTotalCycleTransactions } from './transaction';
 export {
