@@ -1,5 +1,5 @@
 import { TransactionType } from '@prisma/client';
-import prisma from '.';
+import prisma, { AddCycleBalanceToAccountBalance, addIncomeAmountToCycleBalance } from '.';
 import { TransactionFormData } from '@/types';
 
 export async function sumTotalCycleTransactions(cycleId: number, type: TransactionType) {
@@ -12,50 +12,18 @@ export async function sumTotalCycleTransactions(cycleId: number, type: Transacti
 
 export async function createCycleIncome(transactionFormData: TransactionFormData) {
   const { cycleId } = transactionFormData;
-  try {
-    const cycle = await prisma.cycle.findUnique({
-      where: { id: cycleId },
-      include: { Account: true },
-    });
-    if (cycle) {
-      const income = await prisma.transaction.create({ data: { ...transactionFormData } });
-      await prisma.cycle.update({
-        where: { id: cycleId },
-        data: { balance: cycle.balance.toNumber() + income.amount.toNumber() },
-      });
-      await prisma.account.update({
-        where: { id: cycle.Account.id },
-        data: { balance: cycle.Account.balance.toNumber() + cycle.balance.toNumber() },
-      });
-      return { data: income, error: null };
-    }
-    return { error: 'Cycle does not exist' };
-  } catch (error) {
-    return { error: (error as Error).message };
+  const cycle = await prisma.cycle.findUnique({
+    where: { id: cycleId },
+    include: { Account: true },
+  });
+  if (cycle) {
+    const income = await prisma.transaction.create({ data: { ...transactionFormData } });
+    await addIncomeAmountToCycleBalance(cycleId, income.id);
+    await AddCycleBalanceToAccountBalance(cycle.Account.id, cycleId);
+    return income;
   }
+  throw new Error(`Cycle with id ${cycleId} was not found`);
 }
 
 export async function createCycleExpense(transactionFormData: TransactionFormData) {
-  const { cycleId } = transactionFormData;
-  try {
-    const cycle = await prisma.cycle.findUnique({
-      where: { id: cycleId },
-      include: { Account: true },
-    });
-    if (cycle) {
-      const expense = await prisma.transaction.create({ data: { ...transactionFormData } });
-      await prisma.cycle.update({
-        where: { id: cycleId },
-        data: { balance: cycle.balance.toNumber() - expense.amount.toNumber() },
-      });
-      await prisma.account.update({
-        where: { id: cycle.Account.id },
-        data: { balance: cycle.Account.balance.toNumber() - cycle.balance.toNumber() },
-      });
-      return { data: expense, error: null };
-    }
-    return { error: 'Cycle does not exist' };
-  } catch (error) {
-    return { error: (error as Error).message };
-  }
 }
