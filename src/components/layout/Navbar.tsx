@@ -8,7 +8,7 @@ function Navbar() {
   }
 
   return (
-    <div className="mb-10 bg-neutral-200">
+    <div className="bg-neutral-200">
       <nav>
         <button type="button" onClick={handSignOut}>
           Sign out

@@ -1,3 +1,5 @@
+import { Modal } from '@/components/containers';
+import { TransactionForm } from '@/components/transaction';
 import { getAccountFromId, getCycleFromId } from '@/db';
 import { notFound } from 'next/navigation';
 
@@ -9,7 +11,11 @@ async function NewTransaction({ params }: { params: { accountId: string; cycleId
   const cycle = await getCycleFromId(cycleId);
 
   if (account && cycle) {
-    return <div>NewTransaction</div>;
+    return (
+      <Modal>
+        <TransactionForm />
+      </Modal>
+    );
   }
 
   notFound();
