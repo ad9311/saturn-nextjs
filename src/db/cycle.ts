@@ -26,9 +26,9 @@ export async function addIncomeAmountToCycleBalance(cycleId: number, transaction
     throw new Error(`Transaction with id ${transactionId} was not found`);
   }
 
-  return await prisma.cycle.update({ 
+  return await prisma.cycle.update({
     where: { id: cycleId },
-    data: { balance: cycle.balance.toNumber() + income.amount.toNumber() }
+    data: { balance: cycle.balance.toNumber() + income.amount.toNumber() },
   });
 }
 
@@ -44,8 +44,8 @@ export async function subsIncomeAmountToCycleBalance(cycleId: number, transactio
     throw new Error(`Transaction with id ${transactionId} was not found`);
   }
 
-  return await prisma.cycle.update({ 
+  return await prisma.cycle.update({
     where: { id: cycleId },
-    data: { balance: cycle.balance.toNumber() - income.amount.toNumber() }
+    data: { balance: cycle.balance.toNumber() - income.amount.toNumber() },
   });
 }

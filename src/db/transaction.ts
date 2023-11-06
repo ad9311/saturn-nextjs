@@ -1,5 +1,10 @@
 import { TransactionType } from '@prisma/client';
-import prisma, { addCycleBalanceToAccountBalance, addIncomeAmountToCycleBalance, subsCycleBalanceToAccountBalance, subsIncomeAmountToCycleBalance } from '.';
+import prisma, {
+  addCycleBalanceToAccountBalance,
+  addIncomeAmountToCycleBalance,
+  subsCycleBalanceToAccountBalance,
+  subsIncomeAmountToCycleBalance,
+} from '.';
 import { TransactionFormData } from '@/types';
 
 export async function sumTotalCycleTransactions(cycleId: number, type: TransactionType) {

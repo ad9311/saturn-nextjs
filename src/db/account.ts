@@ -27,13 +27,13 @@ export async function getAccountFromId(id: number) {
 }
 
 export async function addCycleBalanceToAccountBalance(accountId: number, cycleId: number) {
-  const account = await prisma.account.findUnique({ where: { id: accountId }});
-  const cycle = await prisma.cycle.findUnique({ where: { id: cycleId }});
+  const account = await prisma.account.findUnique({ where: { id: accountId } });
+  const cycle = await prisma.cycle.findUnique({ where: { id: cycleId } });
 
   if (account === null) {
     throw new Error(`Account with id ${accountId} was not found`);
   }
-  
+
   if (cycle === null) {
     throw new Error(`Cycle with id ${cycleId} was not found`);
   }
@@ -45,13 +45,13 @@ export async function addCycleBalanceToAccountBalance(accountId: number, cycleId
 }
 
 export async function subsCycleBalanceToAccountBalance(accountId: number, cycleId: number) {
-  const account = await prisma.account.findUnique({ where: { id: accountId }});
-  const cycle = await prisma.cycle.findUnique({ where: { id: cycleId }});
+  const account = await prisma.account.findUnique({ where: { id: accountId } });
+  const cycle = await prisma.cycle.findUnique({ where: { id: cycleId } });
 
   if (account === null) {
     throw new Error(`Account with id ${accountId} was not found`);
   }
-  
+
   if (cycle === null) {
     throw new Error(`Cycle with id ${cycleId} was not found`);
   }
