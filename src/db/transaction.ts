@@ -8,7 +8,7 @@ import prisma, {
 import { TransactionFormData } from '@/types';
 
 export async function getTransactionFromId(id: number) {
-  return await prisma.transaction.findUnique({ where: { id }});
+  return await prisma.transaction.findUnique({ where: { id } });
 }
 
 export async function sumTotalCycleTransactions(cycleId: number, type: TransactionType) {

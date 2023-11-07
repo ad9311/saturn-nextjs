@@ -7,7 +7,12 @@ export {
   subsTransactionFromCycle,
   getCycleFromId,
 } from './cycle';
-export { sumTotalCycleTransactions, createCycleExpense, createCycleIncome, getTransactionFromId } from './transaction';
+export {
+  sumTotalCycleTransactions,
+  createCycleExpense,
+  createCycleIncome,
+  getTransactionFromId,
+} from './transaction';
 export {
   getUserAccounts,
   getAccountsFromCurrentUser,
