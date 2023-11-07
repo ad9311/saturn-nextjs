@@ -2,8 +2,7 @@
 
 import prisma, { getCurrentUser } from '@/db';
 import { getCurrentMonthYear } from '@/helpers';
-import { FormMessage } from '@/types';
-import { accountSchema } from '@/types';
+import { FormMessage, accountSchema } from '@/types';
 
 export async function createAccountAction(_prevState: FormMessage, formData: FormData) {
   try {
@@ -31,6 +30,7 @@ export async function createAccountAction(_prevState: FormMessage, formData: For
       });
       return { message: `The account ${account.bankName} was created!` };
     }
+    return { message: 'Error, check form values' }
   } catch (error) {
     return { message: 'There was an error creating the account' };
   }
