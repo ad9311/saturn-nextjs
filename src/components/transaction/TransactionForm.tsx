@@ -57,7 +57,11 @@ function TransactionForm() {
       </label>
       <label htmlFor="method_description">
         Method description
-        <textarea name="method_description" id="method_description" placeholder="Method description" />
+        <textarea
+          name="method_description"
+          id="method_description"
+          placeholder="Method description"
+        />
       </label>
       <label htmlFor="submit">
         <SubmitInput />

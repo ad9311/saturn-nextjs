@@ -30,7 +30,7 @@ export async function createAccountAction(_prevState: FormMessage, formData: For
       });
       return { message: `The account ${account.bankName} was created!` };
     }
-    return { message: 'Error, check form values' }
+    return { message: 'Error, check form values' };
   } catch (error) {
     return { message: 'There was an error creating the account' };
   }

@@ -13,9 +13,8 @@ export async function createTransactionAction(_prevState: FormMessage, formData:
       method: formData.get('method')?.toString(),
       methodDescription: formData.get('method_description')?.toString(),
     };
-    
+
     const validation = transactionSchema.safeParse(transactionRawData);
-    console.log(formData.get('type'));
 
     if (validation.success) {
       const transactionData = transactionSchema.parse(transactionRawData);
@@ -27,8 +26,7 @@ export async function createTransactionAction(_prevState: FormMessage, formData:
         return { message: 'Expense transaction was successfully created' };
       }
     }
-    console.log(validation.error.errors.map(e => e));
-    return { message: 'Error, check form values' }
+    return { message: 'Error, check form values' };
   } catch (error) {
     return { message: 'There was an error creating the transaction' };
   }
