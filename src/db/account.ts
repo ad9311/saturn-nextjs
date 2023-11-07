@@ -30,7 +30,7 @@ export async function getAccountFromId(id: number) {
   });
 }
 
-export async function addIncomeAmountToAccountBalance(accountId: number, transactionId: number) {
+export async function addTransactionToAccount(accountId: number, transactionId: number) {
   const account = await prisma.account.findUnique({ where: { id: accountId } });
   const transaction = await prisma.transaction.findUnique({ where: { id: transactionId } });
 
@@ -48,7 +48,7 @@ export async function addIncomeAmountToAccountBalance(accountId: number, transac
   });
 }
 
-export async function subsExpenseAmountToAccountBalance(accountId: number, transactionId: number) {
+export async function subsTransactionFromAccount(accountId: number, transactionId: number) {
   const account = await prisma.account.findUnique({ where: { id: accountId } });
   const transaction = await prisma.transaction.findUnique({ where: { id: transactionId } });
 

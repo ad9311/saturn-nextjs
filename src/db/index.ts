@@ -3,8 +3,8 @@ import prisma from './prisma';
 export { getCurrentUser } from './user';
 export {
   getUserLastCycle,
-  addIncomeAmountToCycleBalance,
-  subsIncomeAmountToCycleBalance,
+  addTransactionToCycle,
+  subsTransactionFromCycle,
   getCycleFromId,
 } from './cycle';
 export { sumTotalCycleTransactions } from './transaction';
@@ -12,7 +12,7 @@ export {
   getUserAccounts,
   getAccountsFromCurrentUser,
   getAccountFromId,
-  addIncomeAmountToAccountBalance,
-  subsExpenseAmountToAccountBalance,
+  addTransactionToAccount,
+  subsTransactionFromAccount,
 } from './account';
 export default prisma;

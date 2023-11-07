@@ -1,9 +1,9 @@
 import { TransactionType } from '@prisma/client';
 import prisma, {
-  addIncomeAmountToAccountBalance,
-  addIncomeAmountToCycleBalance,
-  subsExpenseAmountToAccountBalance,
-  subsIncomeAmountToCycleBalance,
+  addTransactionToAccount,
+  addTransactionToCycle,
+  subsTransactionFromAccount,
+  subsTransactionFromCycle,
 } from '.';
 import { TransactionFormData } from '@/types';
 
@@ -23,8 +23,8 @@ export async function createCycleIncome(transactionFormData: TransactionFormData
   });
   if (cycle) {
     const income = await prisma.transaction.create({ data: { ...transactionFormData } });
-    await addIncomeAmountToCycleBalance(cycleId, income.id);
-    await addIncomeAmountToAccountBalance(cycle.Account.id, income.id);
+    await addTransactionToCycle(cycleId, income.id);
+    await addTransactionToAccount(cycle.Account.id, income.id);
     return income;
   }
   throw new Error(`Cycle with id ${cycleId} was not found`);
@@ -38,8 +38,8 @@ export async function createCycleExpense(transactionFormData: TransactionFormDat
   });
   if (cycle) {
     const expense = await prisma.transaction.create({ data: { ...transactionFormData } });
-    await subsIncomeAmountToCycleBalance(cycleId, expense.id);
-    await subsExpenseAmountToAccountBalance(cycle.Account.id, expense.id);
+    await subsTransactionFromCycle(cycleId, expense.id);
+    await subsTransactionFromAccount(cycle.Account.id, expense.id);
     return expense;
   }
   throw new Error(`Cycle with id ${cycleId} was not found`);

@@ -14,7 +14,7 @@ export async function getUserLastCycle(accountId: number) {
   });
 }
 
-export async function addIncomeAmountToCycleBalance(cycleId: number, transactionId: number) {
+export async function addTransactionToCycle(cycleId: number, transactionId: number) {
   const cycle = await prisma.cycle.findUnique({ where: { id: cycleId } });
   const income = await prisma.transaction.findUnique({ where: { id: transactionId } });
 
@@ -32,7 +32,7 @@ export async function addIncomeAmountToCycleBalance(cycleId: number, transaction
   });
 }
 
-export async function subsIncomeAmountToCycleBalance(cycleId: number, transactionId: number) {
+export async function subsTransactionFromCycle(cycleId: number, transactionId: number) {
   const cycle = await prisma.cycle.findUnique({ where: { id: cycleId } });
   const income = await prisma.transaction.findUnique({ where: { id: transactionId } });
 
