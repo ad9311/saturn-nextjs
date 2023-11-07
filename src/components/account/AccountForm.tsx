@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormState, useFormStatus } from 'react-dom';
-import { createAccountAction } from '@/actions/account';
+import { createAccountAction } from '@/actions';
 import { FormMessage } from '@/types';
 
 const initialState: FormMessage = {
