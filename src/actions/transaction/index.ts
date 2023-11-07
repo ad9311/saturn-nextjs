@@ -1,6 +1,6 @@
 'use server';
 
-import { createCycleExpense, createCycleIncome } from '@/db/transaction';
+import { createCycleExpense, createCycleIncome } from '@/db';
 import { FormMessage, transactionSchema } from '@/types';
 
 export async function createTransactionAction(_prevState: FormMessage, formData: FormData) {
