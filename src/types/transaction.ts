@@ -5,8 +5,8 @@ export type TransactionFormData = {
   cycleId: number;
   amount: number;
   description: string;
-  type: string;
-  method: string;
+  type: TransactionType;
+  method: TransactionMethod;
   methodDescription: string;
 };
 

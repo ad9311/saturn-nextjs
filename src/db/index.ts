@@ -12,7 +12,7 @@ export {
   getUserAccounts,
   getAccountsFromCurrentUser,
   getAccountFromId,
-  addCycleBalanceToAccountBalance,
-  subsCycleBalanceToAccountBalance,
+  addIncomeAmountToAccountBalance,
+  subsExpenseAmountToAccountBalance,
 } from './account';
 export default prisma;
